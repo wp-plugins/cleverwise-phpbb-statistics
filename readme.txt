@@ -32,6 +32,8 @@ Displays key phpBB statistics from up to three boards on your Wordpress site wit
 
 <p>Live Site Preview: Want to see this plugin in action on a real live site?  <a href="http://www.armadafleetcommand.com/">ArmadaFleetCommand.com</a> and look in the right sidebar.</p>
 
+<p>Shameless Promotion: See other <a href="http://wordpress.org/plugins/search.php?q=cleverwise">Cleverwise Wordpress Directory Plugins</a></p>
+
 == Installation ==
 
 <ol>
