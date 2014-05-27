@@ -4,7 +4,7 @@ Donate link: http://www.cyberws.com/cleverwise-plugins/
 Tags: downloads, phpbb,statistics,forum
 Requires at least: 3.0.1
 Tested up to: 3.9
-Stable tag: 1.2
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,8 +63,11 @@ Yes.  You may easily modify the layout/look of the information.  Plus you may ch
 
 == Changelog ==
 
+= 1.3 =
+Update: The wpapi was updated
+
 = 1.2 =
-Minor alterations
+Update: Minor alterations
 
 = 1.1 =
 Altered framework code to fit Wordpress Plugin Directory terms<br>
@@ -75,5 +78,5 @@ Initial release of plugin
 
 == Upgrade Notice ==
 
-= 1.2 =
-Minor alternations
+= 1.3 =
+The wpapi was updated.  Visit the Help Guide section for download link.  Simply download new version and upload allowing overwrite of files.

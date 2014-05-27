@@ -50,7 +50,7 @@ Global $wpdb,$current_user,$pbbs_wp_option,$cw_phpbb_stats_pull_url,$cwfa_phpbb;
 	$cw_phpbb_stats_html='';
 
 	////////////////////////////////////////////////////////////////////////////
-	//	Settings Update
+	//	Help Guide
 	////////////////////////////////////////////////////////////////////////////
 	if ($cw_action == 'settingshelp') {
 
@@ -92,9 +92,13 @@ EOM;
 
 $cw_phpbb_stats_html .=<<<EOM
 <p>The following lists the new changes from version-to-version.</p>
+<p>Version: <b>1.3</b></p>
+<ul style="list-style: disc; margin-left: 25px;">
+<li>Update: The wpapi was updated</li>
+</ul>
 <p>Version: <b>1.2</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
-<li>Minor alterations</li>
+<li>Update: Minor alterations</li>
 </ul>
 <p>Version: <b>1.1</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
@@ -147,7 +151,7 @@ EOM;
 			$forum_1_stats=sprintf($cw_phpbb_stats_pull_url,$forum_1_url,$forum_1_key);
 			$forum_1_stats=cw_phpbb_stats_httpdata($forum_1_stats);
 			if (!$forum_1_stats) {
-				$error .='<li>Board one URL doesn\'t seem to be working (sometimes a slow site will cause this)</li>';
+				$error .='<li>Board one URL doesn\'t seem to be working.  Often caused by invalid secret key or slow site.</li>';
 			}
 		}
 		if (!$forum_1_key) {
@@ -167,7 +171,7 @@ EOM;
 				$forum_2_stats=sprintf($cw_phpbb_stats_pull_url,$forum_2_url,$forum_2_key);
 				$forum_2_stats=cw_phpbb_stats_httpdata($forum_2_stats);
 				if (!$forum_2_stats) {
-					$error .='<li>Board two URL doesn\'t seem to be working (sometimes a slow site will cause this)</li>';
+					$error .='<li>Board two URL doesn\'t seem to be working.  Often caused by invalid secret key or slow site.</li>';
 				}
 			}
 			if (!$forum_2_key) {
@@ -192,7 +196,7 @@ EOM;
 				$forum_3_stats=sprintf($cw_phpbb_stats_pull_url,$forum_3_url,$forum_3_key);
 				$forum_3_stats=cw_phpbb_stats_httpdata($forum_3_stats);
 				if (!$forum_3_stats) {
-					$error .='<li>Board three URL doesn\'t seem to be working (sometimes a slow site will cause this)</li>';
+					$error .='<li>Board three URL doesn\'t seem to be working.  Often caused by invalid secret key or slow site.</li>';
 				}
 			}
 			if (!$forum_3_key) {
@@ -407,6 +411,7 @@ EOM;
 //	Print out to browser (wp)
 ////////////////////////////////////////////////////////////////////////////
 function cw_phpbb_stats_admin_browser($cw_phpbb_stats_html) {
+$cw_plugin_name='cleverwise-phpbb-statistics';
 print <<<EOM
 <style type="text/css">
 #cws-wrap {margin: 20px 20px 20px 0px;}
@@ -424,7 +429,7 @@ print <<<EOM
 <div id="cws-nav" name="cws-nav"><div id="cws-inner" name="cws-inner"><a href="?page=cw-phpbb-stats">Main Panel</a> | <a href="?page=cw-phpbb-stats&cw_action=settingshelp">Help Guide</a> | <a href="?page=cw-phpbb-stats&cw_action=settingsnew">What Is New?</a></div></div>
 <p>$cw_phpbb_stats_html</p>
 <div id="cws-resources" name="cws-resources"><div id="cws-inner" name="cws-inner">Resources (open in new windows):<br>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7VJ774KB9L9Z4" target="_blank">Donate - Thank You!</a> | <a href="http://wordpress.org/support/plugin/cleverwise-phpbb-statistics" target="_blank">Get Support</a> | <a href="http://wordpress.org/support/view/plugin-reviews/cleverwise-phpbb-statistics" target="_blank">Review Plugin</a> | <a href="http://www.cyberws.com/cleverwise-plugins/plugin-suggestion/" target="_blank">Suggest Plugin</a><br>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7VJ774KB9L9Z4" target="_blank">Donate - Thank You!</a> | <a href="http://wordpress.org/support/plugin/$cw_plugin_name" target="_blank">Get Support</a> | <a href="http://wordpress.org/support/view/plugin-reviews/$cw_plugin_name" target="_blank">Review Plugin</a> | <a href="http://www.cyberws.com/cleverwise-plugins/plugin-suggestion/" target="_blank">Suggest Plugin</a><br>
 <a href="http://www.cyberws.com/cleverwise-plugins" target="_blank">Cleverwise Plugins</a> | <a href="http://www.cyberws.com/professional-technical-consulting/" target="_blank">Wordpress +PHP,Server Consulting</a></div></div>
 </div>
 EOM;
