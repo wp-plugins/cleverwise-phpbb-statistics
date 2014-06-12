@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Cleverwise phpBB Statistics
 * Description: Display phpBB 3.x board statistics on your Wordpress powered site.  This plugin allows you to control the layout of the information, what information is displayed, where it should be displayed, how often it should be updated, and even allows information to be pulled from multiple installs that don't need to be located on the same website or server.
-* Version: 1.3
+* Version: 1.4
 * Author: Jeremy O'Connell
 * Author URI: http://www.cyberws.com/cleverwise-plugins/
 * License: GPL2 .:. http://opensource.org/licenses/GPL-2.0
@@ -19,7 +19,7 @@ $cwfa_phpbb=new cwfa_phpbb;
 ////////////////////////////////////////////////////////////////////////////
 Global $wpdb,$p2w_wp_option_version_txt,$p2w_wp_option,$p2w_wp_option_version_num;
 
-$pbbs_option_version_num='1.3';
+$pbbs_option_version_num='1.4';
 $pbbs_wp_option='phpbb_stats';
 $pbbs_wp_option_version_txt=$pbbs_wp_option.'_version';
 
@@ -167,7 +167,7 @@ Global $wpdb,$pbbs_wp_option;
 	////////////////////////////////////////////////////////////////////////////
 	//	Print to browser
 	////////////////////////////////////////////////////////////////////////////
-	print $cw_phpbb_stats_html;
+	return $cw_phpbb_stats_html;
 }
 
 ////////////////////////////////////////////////////////////////////////////

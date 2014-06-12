@@ -3,8 +3,8 @@ Contributors: cyberws
 Donate link: http://www.cyberws.com/cleverwise-plugins/
 Tags: downloads, phpbb,statistics,forum
 Requires at least: 3.0.1
-Tested up to: 3.9
-Stable tag: 1.3
+Tested up to: 3.9.1
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,9 @@ Yes.  You may easily modify the layout/look of the information.  Plus you may ch
 
 == Changelog ==
 
+= 1.4 =
+Fixed: Shortcode in certain areas would cause incorrect placement.
+
 = 1.3 =
 Update: The wpapi was updated
 
@@ -70,13 +73,13 @@ Update: The wpapi was updated
 Update: Minor alterations
 
 = 1.1 =
-Altered framework code to fit Wordpress Plugin Directory terms<br>
-Some structural changes where made
+Update: Altered framework code to fit Wordpress Plugin Directory terms<br>
+Update: Some structural changes where made
 
 = 1.0 =
 Initial release of plugin
 
 == Upgrade Notice ==
 
-= 1.3 =
-The wpapi was updated.  Visit the Help Guide section for download link.  Simply download new version and upload allowing overwrite of files.
+= 1.4 =
+Plugin should no longer display at top of page when shortcode is located elsewhere.

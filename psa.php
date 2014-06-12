@@ -92,6 +92,10 @@ EOM;
 
 $cw_phpbb_stats_html .=<<<EOM
 <p>The following lists the new changes from version-to-version.</p>
+<p>Version: <b>1.4</b></p>
+<ul style="list-style: disc; margin-left: 25px;">
+<li>Fixed: Shortcode in certain areas would cause incorrect placement.</li>
+</ul>
 <p>Version: <b>1.3</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
 <li>Update: The wpapi was updated</li>
@@ -102,8 +106,8 @@ $cw_phpbb_stats_html .=<<<EOM
 </ul>
 <p>Version: <b>1.1</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
-<li>Altered framework code to fit Wordpress Plugin Directory terms</li>
-<li>Some structural changes where made</li>
+<li>Update: Altered framework code to fit Wordpress Plugin Directory terms</li>
+<li>Update: Some structural changes where made</li>
 </ul>
 <p>Version: <b>1.0</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
