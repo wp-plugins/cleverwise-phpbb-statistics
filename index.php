@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Cleverwise phpBB Statistics
 * Description: Display phpBB 3.x board statistics on your Wordpress powered site.  This plugin allows you to control the layout of the information, what information is displayed, where it should be displayed, how often it should be updated, and even allows information to be pulled from multiple installs that don't need to be located on the same website or server.
-* Version: 1.4
+* Version: 1.5
 * Author: Jeremy O'Connell
 * Author URI: http://www.cyberws.com/cleverwise-plugins/
 * License: GPL2 .:. http://opensource.org/licenses/GPL-2.0
@@ -19,7 +19,7 @@ $cwfa_phpbb=new cwfa_phpbb;
 ////////////////////////////////////////////////////////////////////////////
 Global $wpdb,$p2w_wp_option_version_txt,$p2w_wp_option,$p2w_wp_option_version_num;
 
-$pbbs_option_version_num='1.4';
+$pbbs_option_version_num='1.5';
 $pbbs_wp_option='phpbb_stats';
 $pbbs_wp_option_version_txt=$pbbs_wp_option.'_version';
 
@@ -51,6 +51,13 @@ if (is_admin()) {
 //	Register shortcut to display visitor side
 ////////////////////////////////////////////////////////////////////////////
 add_shortcode('cw_phpbb_stats', 'cw_phpbb_stats_vside');
+
+////////////////////////////////////////////////////////////////////////////
+//	Register Widget
+////////////////////////////////////////////////////////////////////////////
+add_action('widgets_init',
+     create_function('', 'return register_widget("cw_ps_widget");')
+);
 
 ////////////////////////////////////////////////////////////////////////////
 //	Visitor Display
@@ -250,4 +257,52 @@ Global $wpdb,$pbbs_wp_option,$cw_phpbb_stats_pull_url;
 
 	//	Return data
 	return($forum_details);
+}
+
+////////////////////////////////////////////////////////////////////////////
+//	Widget Logic
+////////////////////////////////////////////////////////////////////////////
+class cw_ps_widget extends WP_Widget {
+
+	/**
+	 * Sets up the widgets name etc
+	 */
+	public function __construct() {
+		/* Widget settings. */
+		parent::__construct(
+			'cw_ps_widget', // Base ID
+			__('phpBB Statistics', 'text_domain'), // Name
+			array( 'description'=>__('This will display your phpBB statistics.', 'text_domain'),) // Args
+		);
+	}
+
+	/**
+	 * Outputs the content of the widget
+	 *
+	 * @param array $args
+	 * @param array $instance
+	 */
+	public function widget($args,$instance) {
+		$cw_phpbb_stats_widget_html=cw_phpbb_stats_vside();
+		print $cw_phpbb_stats_widget_html;
+	}
+
+	/**
+	 * Outputs the options form on admin
+	 *
+	 * @param array $instance The widget options
+	 */
+	public function form($instance) {
+		// outputs the options form on admin
+	}
+
+	/**
+	 * Processing widget options on save
+	 *
+	 * @param array $new_instance The new options
+	 * @param array $old_instance The previous options
+	 */
+	public function update($new_instance, $old_instance) {
+		// processes widget options to be saved
+	}
 }

@@ -4,7 +4,7 @@ Donate link: http://www.cyberws.com/cleverwise-plugins/
 Tags: downloads, phpbb,statistics,forum
 Requires at least: 3.0.1
 Tested up to: 3.9.1
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,8 @@ Displays key phpBB statistics from up to three boards on your Wordpress site wit
 <p>Live Site Preview: Want to see this plugin in action on a real live site?  <a href="http://www.armadafleetcommand.com/">ArmadaFleetCommand.com</a> and look in the right sidebar.</p>
 
 <p>Shameless Promotion: See other <a href="http://wordpress.org/plugins/search.php?q=cleverwise">Cleverwise Wordpress Directory Plugins</a></p>
+
+<p>Thanks for looking at the Cleverwise Plugin Series! To help out the community reviews and comments are highly encouraged.  If you can't leave a good review I would greatly appreciate opening a support thread before hand to see if I can address your concern(s).  Enjoy!</p>
 
 == Installation ==
 
@@ -63,8 +65,11 @@ Yes.  You may easily modify the layout/look of the information.  Plus you may ch
 
 == Changelog ==
 
+= 1.5 =
+An easy to use display widget has been added
+
 = 1.4 =
-Fixed: Shortcode in certain areas would cause incorrect placement.
+Fixed: Shortcode in certain areas would cause incorrect placement
 
 = 1.3 =
 Update: The wpapi was updated
@@ -81,5 +86,5 @@ Initial release of plugin
 
 == Upgrade Notice ==
 
-= 1.4 =
-Plugin should no longer display at top of page when shortcode is located elsewhere.
+= 1.5 =
+An easy to use display widget has been added

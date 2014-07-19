@@ -58,10 +58,9 @@ $cw_phpbb_stats_html .=<<<EOM
 <div style="margin: 10px 0px 5px 0px; width: 400px; border-bottom: 1px solid #c16a2b; padding-bottom: 5px; font-weight: bold;">Introduction:</div>
 <p>This system allows you to display information from phpBB board installs on your Wordpress powered site.  You have total control over the layout of the information, what information will be displayed, how often it will be updated, where it will appear on your website, and may even pull information from multiple phpBB installs that are on other websites and servers.</p>
 <p>This system has been designed to be as resource friendly as possible.  It stores the most recent information from a phpBB install and only recontacts phpBB when it is time for a refresh.  Therefore between refresh periods the statistics are being loaded from the Wordpress database.  Also this plugin will only wait two (2) seconds for a phpBB install to respond with updated information.  If no response is provided because phpBB is overloaded, slow, or down this plugin will just display the last saved information.  In addition information is only updated when a visitor (human or bot) loads your site.  So even if you have set information to refresh every five (5) minutes but there is no visitor for 38 minutes the statistics won't be updated until that point.</p>
-<p>Note: If you place the shortcode to display phpBB information in a text widget and it isn't working, then you need to add a filter code.  At the bottom of this guide you will find the code to add to your theme's <b>functions.php</b> file.  Place the code on a new line and save changes.  If necessary upload the file change to your website.</p>
+Note: If you place the shortcode to display phpBB information in a text widget and it isn't working, then you need to add a filter code.  At the bottom of this guide you will find the code to add to your theme's <b>functions.php</b> file.  Place the code on a new line and save changes.  If necessary upload the file change to your website.  If you are confused no worries there is an easy to use drag and drop display widget too.
 <p>Steps:</p>
 <ol>
-
 <li><p>Download <a href="http://content.screencast.com/users/CleverwisePlugins/folders/Default/media/92082849-ef16-420a-b2c4-b6737330749e/cwphpbb-wpapi.zip?downloadOnly=true">Cleverwise phpBB Statistics WPAPI files</a> to your computer then unzip, then open <b>wpapi.config.sample.php</b> in the <b>wpapi</b> directory and setup the security key for the phpBB install.  This will keep unauthorized sources from accessing the api.  You simply make up/generate this key, which is case sensitive.  The longer and more random the better.  For example: "access" isn't strong, while "&C!-9OV;8{:%K#2on51@YNkv4H!*uREg" is great.</p>
 <p>Optional: There is a variable that allows you to omit specific forum ids from being used when generating the most recent post.  Therefore if you have some hidden forums or forums you just don't want included list their forum ids separated by commas.</p></li>
 <li>Save changes to the new file name of <b>wpapi.config.php</b> and upload the whole <b>wpapi</b> directory to the <b>styles</b> directory in your phpBB install.</li>
@@ -77,12 +76,18 @@ $cw_phpbb_stats_html .=<<<EOM
 <li>In the <b>Display/Theme Style</b> you may edit the layout to achieve a look that works with your site design.  It is in this box where you control what and how the information will be displayed.  This style will be repeated/used for all phpBB installs.
 </li>
 <li>Once the phpBB install settings and style have been completed save changes.  Obviously correct any errors that are displayed.</li>
-<li>Now add the shortcode <b>[cw_phpbb_stats]</b> to the area(s) of your Wordpress site (header, footer, widgets, sidebar, post(s), page(s), etc) where you wish the phpBB information to be displayed.  Do keep in mind that, by default, Wordpress doesn't process shortcodes in text widgets.  Therefore you will need to add the code below to your <b>functions.php</b> file.</li>
+<li><p>There are two methods to display the phpBB statistics.  You may used one or both.</p>
+	<ol>
+	<li><b>Widget method</b>: Visit "Appearance" in your Wordpress admin navigation then "Widgets".  You will find a widget called "phpBB Statistics" which you may add to the desired section(s)/area(s) of your site.  This is the easiest method.</li>
+	<li><b>Shortcode method</b>: Add the shortcode <b>[cw_phpbb_stats]</b> to the area(s) of your Wordpress site (header, footer, widgets, sidebar, post(s), page(s), etc) where you wish the phpBB statistics to be displayed.  Do keep in mind that, by default, Wordpress doesn't process shortcodes in text widgets.  Therefore you will need to add the code below to your <b>functions.php</b> file.  This is the more versatile method.</li>
+	</ol>
+</li>
 <li>Finally if you need to change your phpBB install information or style code simply edit the information necessary and save it.</li>
 </ol>
 
 <div style="margin: 10px 0px 5px 0px; width: 400px; border-bottom: 1px solid #c16a2b; padding-bottom: 5px; font-weight: bold;">Text widget filter code for your theme's functions.php:</div>
 add_filter('widget_text', 'do_shortcode');
+<p>Tip: If you only use the Widget display method you may skip the above code.</p>
 EOM;
 
 	////////////////////////////////////////////////////////////////////////////
@@ -92,9 +97,13 @@ EOM;
 
 $cw_phpbb_stats_html .=<<<EOM
 <p>The following lists the new changes from version-to-version.</p>
+<p>Version: <b>1.5</b></p>
+<ul style="list-style: disc; margin-left: 25px;">
+<li>An easy to use display widget has been added</li>
+</ul>
 <p>Version: <b>1.4</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
-<li>Fixed: Shortcode in certain areas would cause incorrect placement.</li>
+<li>Fixed: Shortcode in certain areas would cause incorrect placement</li>
 </ul>
 <p>Version: <b>1.3</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
