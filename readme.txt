@@ -3,8 +3,8 @@ Contributors: cyberws
 Donate link: http://www.cyberws.com/cleverwise-plugins/
 Tags: downloads, phpbb,statistics,forum
 Requires at least: 3.0.1
-Tested up to: 3.9.1
-Stable tag: 1.5
+Tested up to: 3.9.2
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,9 @@ Yes.  You may easily modify the layout/look of the information.  Plus you may ch
 
 == Changelog ==
 
+= 1.6 =
+Background edits to eliminate some PHP notice messages
+
 = 1.5 =
 An easy to use display widget has been added
 
@@ -86,5 +89,5 @@ Initial release of plugin
 
 == Upgrade Notice ==
 
-= 1.5 =
-An easy to use display widget has been added
+= 1.6 =
+Background code edits to reduce notice messages in server logs.

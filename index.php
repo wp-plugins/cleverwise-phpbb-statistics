@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Cleverwise phpBB Statistics
 * Description: Display phpBB 3.x board statistics on your Wordpress powered site.  This plugin allows you to control the layout of the information, what information is displayed, where it should be displayed, how often it should be updated, and even allows information to be pulled from multiple installs that don't need to be located on the same website or server.
-* Version: 1.5
+* Version: 1.6
 * Author: Jeremy O'Connell
 * Author URI: http://www.cyberws.com/cleverwise-plugins/
 * License: GPL2 .:. http://opensource.org/licenses/GPL-2.0
@@ -19,7 +19,7 @@ $cwfa_phpbb=new cwfa_phpbb;
 ////////////////////////////////////////////////////////////////////////////
 Global $wpdb,$p2w_wp_option_version_txt,$p2w_wp_option,$p2w_wp_option_version_num;
 
-$pbbs_option_version_num='1.5';
+$pbbs_wp_option_version_num='1.6';
 $pbbs_wp_option='phpbb_stats';
 $pbbs_wp_option_version_txt=$pbbs_wp_option.'_version';
 
@@ -97,8 +97,8 @@ Global $wpdb,$pbbs_wp_option;
 	////////////////////////////////////////////////////////////////////////////
 	//	Process data
 	////////////////////////////////////////////////////////////////////////////
-	isset($cw_phpbb_stats_html);
-	isset($phpbb_stats_process);
+	$cw_phpbb_stats_html='';
+	$phpbb_stats_process='';
 	$phpbb_stats_wp_options_sv='n';
 	$phpbb_stats_ctime=time();
 
@@ -210,7 +210,7 @@ Global $wpdb,$pbbs_wp_option,$cw_phpbb_stats_pull_url;
 	//	If necessary refresh stats
 	$stats_update_setting='cur';
 	if ($forum_current_time > $forum_next_update_ts) {
-		$new_forum_stats=sprintf($cw_phpbb_stats_pull_url,$forum_details[forum_url],$forum_details[forum_key]);
+		$new_forum_stats=sprintf($cw_phpbb_stats_pull_url,$forum_details['forum_url'],$forum_details['forum_key']);
 		$new_forum_stats=cw_phpbb_stats_httpdata($new_forum_stats);
 		if ($new_forum_stats) {
 			$stats_update_setting='new';
@@ -222,7 +222,7 @@ Global $wpdb,$pbbs_wp_option,$cw_phpbb_stats_pull_url;
 	$phpbb_stats_format_tmp=$phpbb_stats_format;
 
 	//	Unseralize forum stats
-	$forum_stats=unserialize($forum_details[forum_stats]);
+	$forum_stats=unserialize($forum_details['forum_stats']);
 
 	//	Replace placeholders with data
 	$phpbb_stats_format_tmp=preg_replace('/{{FORUM_TITLE}}/',$forum_details['forum_name'],$phpbb_stats_format_tmp);

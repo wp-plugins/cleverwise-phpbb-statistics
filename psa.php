@@ -97,6 +97,10 @@ EOM;
 
 $cw_phpbb_stats_html .=<<<EOM
 <p>The following lists the new changes from version-to-version.</p>
+<p>Version: <b>1.6</b></p>
+<ul style="list-style: disc; margin-left: 25px;">
+<li>Background edits to eliminate some PHP notice messages</li>
+</ul>
 <p>Version: <b>1.5</b></p>
 <ul style="list-style: disc; margin-left: 25px;">
 <li>An easy to use display widget has been added</li>
@@ -320,6 +324,9 @@ EOM;
 		}
 
 		//	Create refresh time lists
+		$forum_1_refresh_ts_list='';
+		$forum_2_refresh_ts_list='';
+		$forum_3_refresh_ts_list='';
 		foreach ($refresh_list as $refresh_list_time=> $refresh_list_name) {
 			$forum_1_refresh_ts_list .='<option value="'.$refresh_list_time.'"';
 				if ($forum_1_refresh_ts == $refresh_list_time) {
