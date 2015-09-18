@@ -2,7 +2,7 @@
 /**
 * Plugin Name: Cleverwise phpBB Statistics
 * Description: Display phpBB 3.x board statistics on your Wordpress powered site.  This plugin allows you to control the layout of the information, what information is displayed, where it should be displayed, how often it should be updated, and even allows information to be pulled from multiple installs that don't need to be located on the same website or server.
-* Version: 1.6
+* Version: 1.8
 * Author: Jeremy O'Connell
 * Author URI: http://www.cyberws.com/cleverwise-plugins/
 * License: GPL2 .:. http://opensource.org/licenses/GPL-2.0
@@ -19,7 +19,7 @@ $cwfa_phpbb=new cwfa_phpbb;
 ////////////////////////////////////////////////////////////////////////////
 Global $wpdb,$p2w_wp_option_version_txt,$p2w_wp_option,$p2w_wp_option_version_num;
 
-$pbbs_wp_option_version_num='1.6';
+$pbbs_wp_option_version_num='1.8';
 $pbbs_wp_option='phpbb_stats';
 $pbbs_wp_option_version_txt=$pbbs_wp_option.'_version';
 
@@ -230,18 +230,38 @@ Global $wpdb,$pbbs_wp_option,$cw_phpbb_stats_pull_url;
 	$phpbb_stats_format_tmp=preg_replace('/{{TOPIC_COUNT}}/',$forum_stats['topic_cnt'],$phpbb_stats_format_tmp);
 	$phpbb_stats_format_tmp=preg_replace('/{{POST_COUNT}}/',$forum_stats['post_cnt'],$phpbb_stats_format_tmp);
 
-	$forum_stats_last_post=explode('|',$forum_stats['last_post']);
-	$cw_phpbb_stats_last_post_url='%sviewtopic.php?f=%s&t=%s#p%s';
-	$cw_phpbb_stats_last_post_url=sprintf($cw_phpbb_stats_last_post_url,$forum_details['forum_url'],$forum_stats_last_post[0],$forum_stats_last_post[1],$forum_stats_last_post[2]);
-	$cw_phpbb_stats_last_post_url='<a href="'.$cw_phpbb_stats_last_post_url.'">'.$forum_stats_last_post[3].'</a>';
-	$phpbb_stats_format_tmp=preg_replace('/{{LAST_POST}}/',$cw_phpbb_stats_last_post_url,$phpbb_stats_format_tmp);
+	//	Build post list
+	//$cw_phpbb_stats_post_url='%sviewtopic.php?f=%s&t=%s#p%s';
+	//$form_status_post_url_build=sprintf($cw_phpbb_stats_post_url,$forum_details['forum_url'],$forum_stats_post[0],$forum_stats_post[2],$forum_stats_post[3]);
+	
+	$cw_phpbb_stats_post_url='%sviewtopic.php?p=%s#p%s';
+	
+	$cw_phpbb_stats_last_post='';
+	$forum_stats_post_list='';
+	$forum_stats_posts=$forum_stats['last_post'];
+	if (isset($forum_stats_posts)) {
+			$cw_phpbb_i='0';
+			foreach ($forum_stats_posts as $forum_stats_post) {
+				$forum_stats_post=explode('|',$forum_stats_post);
+				$form_status_post_url_build=sprintf($cw_phpbb_stats_post_url,$forum_details['forum_url'],$forum_stats_post[3],$forum_stats_post[3]);
+				$forum_stats_post_list .='<li><a href="'.$form_status_post_url_build.'">'.$forum_stats_post[4].'</a> - '.$forum_stats_post[1].'</li>';
+				if ($cw_phpbb_i === '0') {
+						$cw_phpbb_stats_last_post='<a href="'.$form_status_post_url_build.'">'.$forum_stats_post[4].'</a>';
+				}
+				$cw_phpbb_i++;
+			}
+	}
+	$phpbb_stats_format_tmp=preg_replace('/{{LAST_POST}}/',$cw_phpbb_stats_last_post,$phpbb_stats_format_tmp);
+	$phpbb_stats_format_tmp=preg_replace('/{{RECENT_POSTS}}/',$forum_stats_post_list,$phpbb_stats_format_tmp);
 
+	//	Build last member signup	
 	$forum_stats_last_mem=explode('|',$forum_stats['last_mem']);
 	$cw_phpbb_stats_last_mem_url='%smemberlist.php?mode=viewprofile&u=%s';
 	$cw_phpbb_stats_last_mem_url=sprintf($cw_phpbb_stats_last_mem_url,$forum_details['forum_url'],$forum_stats_last_mem[0]);
 	$cw_phpbb_stats_last_mem_url='<a href="'.$cw_phpbb_stats_last_mem_url.'">'.$forum_stats_last_mem[1].'</a>';
 	$phpbb_stats_format_tmp=preg_replace('/{{NEWEST_MEMBER}}/',$cw_phpbb_stats_last_mem_url,$phpbb_stats_format_tmp);
 
+	//	Build forum link
 	$forum_link='<a href="%s">%s</a>';
 	$forum_link_build=sprintf($forum_link,$forum_details['forum_url'],$forum_details['forum_name']);
 	$phpbb_stats_format_tmp=preg_replace('/{{FORUM_LINK}}/',$forum_link_build,$phpbb_stats_format_tmp);

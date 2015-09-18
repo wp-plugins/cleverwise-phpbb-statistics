@@ -3,8 +3,8 @@ Contributors: cyberws
 Donate link: http://www.cyberws.com/cleverwise-plugins/
 Tags: downloads, phpbb,statistics,forum
 Requires at least: 3.0.1
-Tested up to: 4.2.1
-Stable tag: 1.6
+Tested up to: 4.3
+Stable tag: 1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,15 @@ Yes.  You may easily modify the layout/look of the information.  Plus you may ch
 
 == Changelog ==
 
+= 1.8 =
+
+Fixed: Clicking on post link now works correctly
+
+= 1.7 =
+
+Now supports phpBB 3.1 - REQUIRES updating WPAPI files - Only supports MySQL compatible databases<br>
+New: Ability to display last five posts (requires template change)</li>
+
 = 1.6 =
 Background edits to eliminate some PHP notice messages
 
@@ -89,5 +98,5 @@ Initial release of plugin
 
 == Upgrade Notice ==
 
-= 1.6 =
-Background code edits to reduce notice messages in server logs.
+= 1.8 =
+Fixed: Clicking on post link now works correctly

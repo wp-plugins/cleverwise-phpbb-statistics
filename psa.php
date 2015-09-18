@@ -61,9 +61,9 @@ $cw_phpbb_stats_html .=<<<EOM
 Note: If you place the shortcode to display phpBB information in a text widget and it isn't working, then you need to add a filter code.  At the bottom of this guide you will find the code to add to your theme's <b>functions.php</b> file.  Place the code on a new line and save changes.  If necessary upload the file change to your website.  If you are confused no worries there is an easy to use drag and drop display widget too.
 <p>Steps:</p>
 <ol>
-<li><p>Download <a href="http://content.screencast.com/users/CleverwisePlugins/folders/Default/media/92082849-ef16-420a-b2c4-b6737330749e/cwphpbb-wpapi.zip?downloadOnly=true">Cleverwise phpBB Statistics WPAPI files</a> to your computer then unzip, then open <b>wpapi.config.sample.php</b> in the <b>wpapi</b> directory and setup the security key for the phpBB install.  This will keep unauthorized sources from accessing the api.  You simply make up/generate this key, which is case sensitive.  The longer and more random the better.  For example: "access" isn't strong, while "&C!-9OV;8{:%K#2on51@YNkv4H!*uREg" is great.</p>
+<li><p>Download <a href="http://www.cyberws.com/info/wpapi.zip">Cleverwise phpBB Statistics WPAPI files</a> to your computer then unzip, then open <b>wpapi.config.sample.php</b> in the <b>wpapi</b> directory and setup the security key for the phpBB install.  This will keep unauthorized sources from accessing the api.  You simply make up/generate this key, which is case sensitive.  The longer and more random the better.  For example: "access" isn't strong, while "&C!-9OV;8{:%K#2on51@YNkv4H!*uREg" is great.</p>
 <p>Optional: There is a variable that allows you to omit specific forum ids from being used when generating the most recent post.  Therefore if you have some hidden forums or forums you just don't want included list their forum ids separated by commas.</p></li>
-<li>Save changes to the new file name of <b>wpapi.config.php</b> and upload the whole <b>wpapi</b> directory to the <b>styles</b> directory in your phpBB install.</li>
+<li>Save changes to the new file name of <b>wpapi.config.php</b> and upload the whole <b>wpapi</b> directory to the <b>styles</b> directory in your phpBB install.  For example: public_html/phpbb3.1/styles/</li>
 <li><p>In this plugin the main page loads the settings, which need to be setup:</p>
 <ol>
 <li>Name of the phpBB install.  Why isn't the name just grabbed from phpBB? It was considered, however stats are often included in sidebars or tight design areas and long named phpBB installs can cause formatting issues.  Therefore a custom name box is provided.</li>
@@ -88,44 +88,41 @@ Note: If you place the shortcode to display phpBB information in a text widget a
 <div style="margin: 10px 0px 5px 0px; width: 400px; border-bottom: 1px solid #c16a2b; padding-bottom: 5px; font-weight: bold;">Text widget filter code for your theme's functions.php:</div>
 add_filter('widget_text', 'do_shortcode');
 <p>Tip: If you only use the Widget display method you may skip the above code.</p>
+
+<div style="margin: 10px 0px 5px 0px; width: 400px; border-bottom: 1px solid #c16a2b; padding-bottom: 5px; font-weight: bold;">Upgrading to Version 1.7 and up:</div>
+<p>There are two important items to note!</p>
+
+<p>First the WPAPI files have been updated (see link in Step 1 above) and thus it is <b>REQUIRED</b> you download and upload the new files to your forum.  This was done to support the phpBB 3.1 file changes as well as add a new feature (more in a moment).  To update WPAPI simply overwrite the old files with the new ones.  Your configuration settings should be saved.  It should be noted that due to phpBB 3.1 changes support for non MySQL compatible databases was dropped, therefore this version will <b>ONLY</b> work with phpBB forums installed using the MySQL database system.</p>
+
+<p>Second a new feature was added that allows the last five posts to be displayed with the forum stats.  A new display template tag was created <b>{{RECENT_POSTS}}</b> to tell WordPress were to display this information.  You'll need to edit your template if you wish to use this new feature.</p>
 EOM;
 
 	////////////////////////////////////////////////////////////////////////////
 	//	What Is New?
 	////////////////////////////////////////////////////////////////////////////
 	} elseif ($cw_action == 'settingsnew') {
+		
+		$cw_phpbb_stats_whats_new=array(
+			'1.8'=>'Fixed: Clicking on post link now works correctly',
+			'1.7'=>'Now supports phpBB 3.1 - REQUIRES updating WPAPI files - Only supports MySQL compatible databases|New: Ability to display last five posts (requires template change)',
+			'1.6'=>'Background edits to eliminate some PHP notice messages',
+			'1.5'=>'An easy to use display widget has been added',
+			'1.4'=>'Fixed: Shortcode in certain areas would cause incorrect placement',
+			'1.3'=>'Update: The wpapi was updated',
+			'1.2'=>'Update: Minor alterations',
+			'1.1'=>'Update: Altered framework code to fit Wordpress Plugin Directory terms|Update: Some structural changes where made',
+			'1.0'=>'Initial release of plugin'
+		);
+		$cw_phpbb_stats_whats_new_build='';
+		foreach ($cw_phpbb_stats_whats_new as $cw_phpbb_stats_whats_new_version => $cw_phpbb_stats_whats_new_news) {
+			$cw_phpbb_stats_whats_new_build .='<p>Version: <b>'.$cw_phpbb_stats_whats_new_version.'</b></p>';
+			$cw_phpbb_stats_whats_new_news=preg_replace('/\|/','</li><li>',$cw_phpbb_stats_whats_new_news);
+			$cw_phpbb_stats_whats_new_build .='<ul style="list-style: disc; margin-left: 25px;"><li>'.$cw_phpbb_stats_whats_new_news.'</li></ul>';
+		}
 
 $cw_phpbb_stats_html .=<<<EOM
 <p>The following lists the new changes from version-to-version.</p>
-<p>Version: <b>1.6</b></p>
-<ul style="list-style: disc; margin-left: 25px;">
-<li>Background edits to eliminate some PHP notice messages</li>
-</ul>
-<p>Version: <b>1.5</b></p>
-<ul style="list-style: disc; margin-left: 25px;">
-<li>An easy to use display widget has been added</li>
-</ul>
-<p>Version: <b>1.4</b></p>
-<ul style="list-style: disc; margin-left: 25px;">
-<li>Fixed: Shortcode in certain areas would cause incorrect placement</li>
-</ul>
-<p>Version: <b>1.3</b></p>
-<ul style="list-style: disc; margin-left: 25px;">
-<li>Update: The wpapi was updated</li>
-</ul>
-<p>Version: <b>1.2</b></p>
-<ul style="list-style: disc; margin-left: 25px;">
-<li>Update: Minor alterations</li>
-</ul>
-<p>Version: <b>1.1</b></p>
-<ul style="list-style: disc; margin-left: 25px;">
-<li>Update: Altered framework code to fit Wordpress Plugin Directory terms</li>
-<li>Update: Some structural changes where made</li>
-</ul>
-<p>Version: <b>1.0</b></p>
-<ul style="list-style: disc; margin-left: 25px;">
-<li>Initial release of plugin</li>
-</ul>
+$cw_phpbb_stats_whats_new_build
 EOM;
 
 	////////////////////////////////////////////////////////////////////////////
@@ -359,6 +356,7 @@ Total Members: {{MEMBER_COUNT}}<br>
 Newest Member: {{NEWEST_MEMBER}}
 <div style="width: 100%; margin-top: 3px; padding: 2px 0px 2px 0px; border-top: 1px #000000 dashed; text-align: center;">Visit: {{FORUM_LINK}}</div>
 </div></div>
+
 EOM;
 		}
 
@@ -405,6 +403,7 @@ $cw_phpbb_stats_html .=<<<EOM
 	<b>{{TOPIC_COUNT}}</b> = Total Topics/thread Count<br>
 	<b>{{POST_COUNT}}</b> = Total Post Count<br>
 	<b>{{LAST_POST}}</b> = Last Post To Forum<br>
+	<b>{{RECENT_POSTS}}</b> = Display Last Five (5) Posts To Forum - <b>IMPORTANT</b>: For this tag to work you must be running WPAPI version 1.5 or higher<br>
 	<b>{{NEWEST_MEMBER}}</b> = Newest Member To Join<br>
 	<b>{{FORUM_LINK}}</b> = Creates Link To Main Forum Index
 </div>
@@ -438,6 +437,7 @@ print <<<EOM
 #cws-wrap a {text-decoration: none; color: #3991bb;}
 #cws-wrap a:hover {text-decoration: underline; color: #ce570f;}
 #cws-nav {width: 400px; padding: 0px; margin-top: 10px; background-color: #deeaef; -moz-border-radius: 5px; border-radius: 5px;}
+#cws-upd {width: 400px; padding: 0px; margin-top: 10px; background-color: #990000; color: #ffffff; -moz-border-radius: 5px; border-radius: 5px;}
 #cws-resources {width: 400px; padding: 0px; margin: 40px 0px 20px 0px; background-color: #c6d6ad; -moz-border-radius: 5px; border-radius: 5px; font-size: 12px; color: #000000;}
 #cws-resources a {text-decoration: none; color: #28394d;}
 #cws-resources a:hover {text-decoration: none; background-color: #28394d; color: #ffffff;}
@@ -447,6 +447,7 @@ print <<<EOM
 <h2 style="padding: 0px; margin: 0px;">Cleverwise phpBB Statistics Options</h2>
 <div style="margin-top: 7px; width: 90%; font-size: 10px; line-height: 1;">This plugin will load statistical information from phpBB 3.x board installs and display that information on your Wordpress powered site.  You have total control over the layout and look of the stats, where on your site it should be displayed, how often the information should be updated, and may even grab information from multiple boards (up to three) that don't even have to be on the same website or server.</div>
 <div id="cws-nav" name="cws-nav"><div id="cws-inner" name="cws-inner"><a href="?page=cw-phpbb-stats">Main Panel</a> | <a href="?page=cw-phpbb-stats&cw_action=settingshelp">Help Guide</a> | <a href="?page=cw-phpbb-stats&cw_action=settingsnew">What Is New?</a></div></div>
+<div id="cws-upd" name="cws-upd"><div id="cws-inner" name="cws-inner">WPAPI files updated! Version 1.7 and up requires a WPAPI upgrade! See the Upgrade notes in the "Help Guide" section!</div></div>
 <p>$cw_phpbb_stats_html</p>
 <div id="cws-resources" name="cws-resources"><div id="cws-inner" name="cws-inner">Resources (open in new windows):<br>
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7VJ774KB9L9Z4" target="_blank">Donate - Thank You!</a> | <a href="http://wordpress.org/support/plugin/$cw_plugin_name" target="_blank">Get Support</a> | <a href="http://wordpress.org/support/view/plugin-reviews/$cw_plugin_name" target="_blank">Review Plugin</a> | <a href="http://www.cyberws.com/cleverwise-plugins/plugin-suggestion/" target="_blank">Suggest Plugin</a><br>
